@@ -208,8 +208,6 @@ pub extern crate hyper;
 pub extern crate hyper_rustls;
 extern crate serde;
 extern crate serde_json;
-// Re-export the yup_oauth2 crate, that is required to call some methods of the hub and the client
-pub extern crate yup_oauth2 as oauth2;
 extern crate mime;
 extern crate url;
 

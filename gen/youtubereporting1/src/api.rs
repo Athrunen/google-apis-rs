@@ -114,7 +114,7 @@ impl Default for Scope {
 #[derive(Clone)]
 pub struct YouTubeReporting<S> {
     pub client: hyper::Client<S, hyper::body::Body>,
-    pub auth: oauth2::authenticator::Authenticator<S>,
+    pub token: String,
     _user_agent: String,
     _base_url: String,
     _root_url: String,
@@ -124,10 +124,10 @@ impl<'a, S> client::Hub for YouTubeReporting<S> {}
 
 impl<'a, S> YouTubeReporting<S> {
 
-    pub fn new(client: hyper::Client<S, hyper::body::Body>, authenticator: oauth2::authenticator::Authenticator<S>) -> YouTubeReporting<S> {
+    pub fn new(client: hyper::Client<S, hyper::body::Body>, token: String) -> YouTubeReporting<S> {
         YouTubeReporting {
             client,
-            auth: authenticator,
+            token,
             _user_agent: "google-api-rust-client/4.0.1".to_string(),
             _base_url: "https://youtubereporting.googleapis.com/".to_string(),
             _root_url: "https://youtubereporting.googleapis.com/".to_string(),
@@ -1070,23 +1070,11 @@ where
 
 
         loop {
-            let token = match self.hub.auth.token(&self._scopes.keys().collect::<Vec<_>>()[..]).await {
-                Ok(token) => token.clone(),
-                Err(err) => {
-                    match  dlg.token(&err) {
-                        Some(token) => token,
-                        None => {
-                            dlg.finished(false);
-                            return Err(client::Error::MissingToken(err))
-                        }
-                    }
-                }
-            };
             let mut req_result = {
                 let client = &self.hub.client;
                 dlg.pre_request();
                 let mut req_builder = hyper::Request::builder().method(hyper::Method::GET).uri(url.clone().into_string())
-                        .header(USER_AGENT, self.hub._user_agent.clone())                            .header(AUTHORIZATION, format!("Bearer {}", token.as_str()));
+                        .header(USER_AGENT, self.hub._user_agent.clone())                            .header(AUTHORIZATION, format!("Bearer {}", self.hub.token));
 
 
                         let request = req_builder
@@ -1375,23 +1363,11 @@ where
 
 
         loop {
-            let token = match self.hub.auth.token(&self._scopes.keys().collect::<Vec<_>>()[..]).await {
-                Ok(token) => token.clone(),
-                Err(err) => {
-                    match  dlg.token(&err) {
-                        Some(token) => token,
-                        None => {
-                            dlg.finished(false);
-                            return Err(client::Error::MissingToken(err))
-                        }
-                    }
-                }
-            };
             let mut req_result = {
                 let client = &self.hub.client;
                 dlg.pre_request();
                 let mut req_builder = hyper::Request::builder().method(hyper::Method::GET).uri(url.clone().into_string())
-                        .header(USER_AGENT, self.hub._user_agent.clone())                            .header(AUTHORIZATION, format!("Bearer {}", token.as_str()));
+                        .header(USER_AGENT, self.hub._user_agent.clone())                            .header(AUTHORIZATION, format!("Bearer {}", self.hub.token));
 
 
                         let request = req_builder
@@ -1675,24 +1651,12 @@ where
 
 
         loop {
-            let token = match self.hub.auth.token(&self._scopes.keys().collect::<Vec<_>>()[..]).await {
-                Ok(token) => token.clone(),
-                Err(err) => {
-                    match  dlg.token(&err) {
-                        Some(token) => token,
-                        None => {
-                            dlg.finished(false);
-                            return Err(client::Error::MissingToken(err))
-                        }
-                    }
-                }
-            };
             request_value_reader.seek(io::SeekFrom::Start(0)).unwrap();
             let mut req_result = {
                 let client = &self.hub.client;
                 dlg.pre_request();
                 let mut req_builder = hyper::Request::builder().method(hyper::Method::POST).uri(url.clone().into_string())
-                        .header(USER_AGENT, self.hub._user_agent.clone())                            .header(AUTHORIZATION, format!("Bearer {}", token.as_str()));
+                        .header(USER_AGENT, self.hub._user_agent.clone())                            .header(AUTHORIZATION, format!("Bearer {}", self.hub.token));
 
 
                         let request = req_builder
@@ -1947,23 +1911,11 @@ where
 
 
         loop {
-            let token = match self.hub.auth.token(&self._scopes.keys().collect::<Vec<_>>()[..]).await {
-                Ok(token) => token.clone(),
-                Err(err) => {
-                    match  dlg.token(&err) {
-                        Some(token) => token,
-                        None => {
-                            dlg.finished(false);
-                            return Err(client::Error::MissingToken(err))
-                        }
-                    }
-                }
-            };
             let mut req_result = {
                 let client = &self.hub.client;
                 dlg.pre_request();
                 let mut req_builder = hyper::Request::builder().method(hyper::Method::DELETE).uri(url.clone().into_string())
-                        .header(USER_AGENT, self.hub._user_agent.clone())                            .header(AUTHORIZATION, format!("Bearer {}", token.as_str()));
+                        .header(USER_AGENT, self.hub._user_agent.clone())                            .header(AUTHORIZATION, format!("Bearer {}", self.hub.token));
 
 
                         let request = req_builder
@@ -2217,23 +2169,11 @@ where
 
 
         loop {
-            let token = match self.hub.auth.token(&self._scopes.keys().collect::<Vec<_>>()[..]).await {
-                Ok(token) => token.clone(),
-                Err(err) => {
-                    match  dlg.token(&err) {
-                        Some(token) => token,
-                        None => {
-                            dlg.finished(false);
-                            return Err(client::Error::MissingToken(err))
-                        }
-                    }
-                }
-            };
             let mut req_result = {
                 let client = &self.hub.client;
                 dlg.pre_request();
                 let mut req_builder = hyper::Request::builder().method(hyper::Method::GET).uri(url.clone().into_string())
-                        .header(USER_AGENT, self.hub._user_agent.clone())                            .header(AUTHORIZATION, format!("Bearer {}", token.as_str()));
+                        .header(USER_AGENT, self.hub._user_agent.clone())                            .header(AUTHORIZATION, format!("Bearer {}", self.hub.token));
 
 
                         let request = req_builder
@@ -2479,23 +2419,11 @@ where
 
 
         loop {
-            let token = match self.hub.auth.token(&self._scopes.keys().collect::<Vec<_>>()[..]).await {
-                Ok(token) => token.clone(),
-                Err(err) => {
-                    match  dlg.token(&err) {
-                        Some(token) => token,
-                        None => {
-                            dlg.finished(false);
-                            return Err(client::Error::MissingToken(err))
-                        }
-                    }
-                }
-            };
             let mut req_result = {
                 let client = &self.hub.client;
                 dlg.pre_request();
                 let mut req_builder = hyper::Request::builder().method(hyper::Method::GET).uri(url.clone().into_string())
-                        .header(USER_AGENT, self.hub._user_agent.clone())                            .header(AUTHORIZATION, format!("Bearer {}", token.as_str()));
+                        .header(USER_AGENT, self.hub._user_agent.clone())                            .header(AUTHORIZATION, format!("Bearer {}", self.hub.token));
 
 
                         let request = req_builder
@@ -2780,23 +2708,11 @@ where
 
 
         loop {
-            let token = match self.hub.auth.token(&self._scopes.keys().collect::<Vec<_>>()[..]).await {
-                Ok(token) => token.clone(),
-                Err(err) => {
-                    match  dlg.token(&err) {
-                        Some(token) => token,
-                        None => {
-                            dlg.finished(false);
-                            return Err(client::Error::MissingToken(err))
-                        }
-                    }
-                }
-            };
             let mut req_result = {
                 let client = &self.hub.client;
                 dlg.pre_request();
                 let mut req_builder = hyper::Request::builder().method(hyper::Method::GET).uri(url.clone().into_string())
-                        .header(USER_AGENT, self.hub._user_agent.clone())                            .header(AUTHORIZATION, format!("Bearer {}", token.as_str()));
+                        .header(USER_AGENT, self.hub._user_agent.clone())                            .header(AUTHORIZATION, format!("Bearer {}", self.hub.token));
 
 
                         let request = req_builder
@@ -3035,23 +2951,11 @@ where
 
 
         loop {
-            let token = match self.hub.auth.token(&self._scopes.keys().collect::<Vec<_>>()[..]).await {
-                Ok(token) => token.clone(),
-                Err(err) => {
-                    match  dlg.token(&err) {
-                        Some(token) => token,
-                        None => {
-                            dlg.finished(false);
-                            return Err(client::Error::MissingToken(err))
-                        }
-                    }
-                }
-            };
             let mut req_result = {
                 let client = &self.hub.client;
                 dlg.pre_request();
                 let mut req_builder = hyper::Request::builder().method(hyper::Method::GET).uri(url.clone().into_string())
-                        .header(USER_AGENT, self.hub._user_agent.clone())                            .header(AUTHORIZATION, format!("Bearer {}", token.as_str()));
+                        .header(USER_AGENT, self.hub._user_agent.clone())                            .header(AUTHORIZATION, format!("Bearer {}", self.hub.token));
 
 
                         let request = req_builder
