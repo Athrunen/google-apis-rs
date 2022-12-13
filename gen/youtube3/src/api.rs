@@ -10031,8 +10031,7 @@ where
                             client::ResumableUploadHelper {
                                 client: &self.hub.client,
                                 delegate: dlg,
-                                start_at: if upload_url_from_server { Some(0) } else { None },
-                                auth: &self.hub.auth,
+                                start_at: if upload_url_from_server { Some(0) } else { None }
                                 user_agent: &self.hub._user_agent,
                                 auth_header: format!("Bearer {}", self.hub.token),
                                 url: url_str,
@@ -10763,8 +10762,7 @@ where
                             client::ResumableUploadHelper {
                                 client: &self.hub.client,
                                 delegate: dlg,
-                                start_at: if upload_url_from_server { Some(0) } else { None },
-                                auth: &self.hub.auth,
+                                start_at: if upload_url_from_server { Some(0) } else { None }
                                 user_agent: &self.hub._user_agent,
                                 auth_header: format!("Bearer {}", self.hub.token),
                                 url: url_str,
@@ -11180,8 +11178,7 @@ where
                             client::ResumableUploadHelper {
                                 client: &self.hub.client,
                                 delegate: dlg,
-                                start_at: if upload_url_from_server { Some(0) } else { None },
-                                auth: &self.hub.auth,
+                                start_at: if upload_url_from_server { Some(0) } else { None }
                                 user_agent: &self.hub._user_agent,
                                 auth_header: format!("Bearer {}", self.hub.token),
                                 url: url_str,
@@ -26805,8 +26802,7 @@ where
                             client::ResumableUploadHelper {
                                 client: &self.hub.client,
                                 delegate: dlg,
-                                start_at: if upload_url_from_server { Some(0) } else { None },
-                                auth: &self.hub.auth,
+                                start_at: if upload_url_from_server { Some(0) } else { None }
                                 user_agent: &self.hub._user_agent,
                                 auth_header: format!("Bearer {}", self.hub.token),
                                 url: url_str,
@@ -28198,8 +28194,7 @@ where
                             client::ResumableUploadHelper {
                                 client: &self.hub.client,
                                 delegate: dlg,
-                                start_at: if upload_url_from_server { Some(0) } else { None },
-                                auth: &self.hub.auth,
+                                start_at: if upload_url_from_server { Some(0) } else { None }
                                 user_agent: &self.hub._user_agent,
                                 auth_header: format!("Bearer {}", self.hub.token),
                                 url: url_str,
@@ -29731,8 +29726,7 @@ where
                             client::ResumableUploadHelper {
                                 client: &self.hub.client,
                                 delegate: dlg,
-                                start_at: if upload_url_from_server { Some(0) } else { None },
-                                auth: &self.hub.auth,
+                                start_at: if upload_url_from_server { Some(0) } else { None }
                                 user_agent: &self.hub._user_agent,
                                 auth_header: format!("Bearer {}", self.hub.token),
                                 url: url_str,

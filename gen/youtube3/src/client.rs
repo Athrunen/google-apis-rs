@@ -569,8 +569,7 @@ where
         hyper::body::Body,
     >,
     pub delegate: &'a mut dyn Delegate,
-    pub start_at: Option<u64>,
-    pub auth: &'a A,
+    pub start_at: Option<u64>
     pub user_agent: &'a str,
     pub auth_header: String,
     pub url: &'a str,
