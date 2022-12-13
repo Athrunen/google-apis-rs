@@ -557,7 +557,7 @@ impl RangeResponseHeader {
 }
 
 /// A utility type to perform a resumable upload from start to end.
-pub struct ResumableUploadHelper<'a, A: 'a, S>
+pub struct ResumableUploadHelper<'a, S>
 where
     S: tower_service::Service<Uri> + Clone + Send + Sync + 'static,
     S::Response: hyper::client::connect::Connection + AsyncRead + AsyncWrite + Send + Unpin + 'static,
@@ -578,7 +578,7 @@ where
     pub content_length: u64,
 }
 
-impl<'a, A, S> ResumableUploadHelper<'a, A, S>
+impl<'a, S> ResumableUploadHelper<'a, S>
 where
     S: tower_service::Service<Uri> + Clone + Send + Sync + 'static,
     S::Response: hyper::client::connect::Connection + AsyncRead + AsyncWrite + Send + Unpin + 'static,
