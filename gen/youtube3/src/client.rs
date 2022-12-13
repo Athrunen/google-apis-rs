@@ -107,16 +107,6 @@ pub trait Delegate: Send {
         None
     }
 
-    /// Called whenever the Authenticator didn't yield a token. The delegate
-    /// may attempt to provide one, or just take it as a general information about the
-    /// impending failure.
-    /// The given Error provides information about why the token couldn't be acquired in the
-    /// first place
-    fn token(&mut self, err: &oauth2::Error) -> Option<oauth2::AccessToken> {
-        let _ = err;
-        None
-    }
-
     /// Called during resumable uploads to provide a URL for the impending upload.
     /// It was saved after a previous call to `store_upload_url(...)`, and if not None,
     /// will be used instead of asking the server for a new upload URL.
@@ -229,9 +219,6 @@ pub enum Error {
     /// Neither through the authenticator, nor through the Delegate.
     MissingAPIKey,
 
-    /// We required a Token, but didn't get one from the Authenticator
-    MissingToken(oauth2::Error),
-
     /// The delgate instructed to cancel the operation
     Cancelled,
 
@@ -273,9 +260,6 @@ impl Display for Error {
             Error::BadRequest(ref message) => {
                 writeln!(f, "Bad Request: {}", message)?;
                 Ok(())
-            }
-            Error::MissingToken(ref err) => {
-                writeln!(f, "Token retrieval failed with error: {}", err)
             }
             Error::Cancelled => writeln!(f, "Operation cancelled by delegate"),
             Error::FieldClash(field) => writeln!(
