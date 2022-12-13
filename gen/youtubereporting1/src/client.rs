@@ -261,9 +261,6 @@ impl Display for Error {
                 writeln!(f, "Bad Request: {}", message)?;
                 Ok(())
             }
-            Error::MissingToken(ref err) => {
-                writeln!(f, "Token retrieval failed with error: {}", err)
-            }
             Error::Cancelled => writeln!(f, "Operation cancelled by delegate"),
             Error::FieldClash(field) => writeln!(
                 f,
